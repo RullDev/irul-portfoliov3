@@ -22,12 +22,12 @@ const TimelineItem = ({ year, title, description, isLeft }) => (
     
     <div className="w-2/12 flex justify-center relative">
       <div className="absolute w-1 bg-white/20 h-full"></div>
-      <div className="absolute w-1 bg-gradient-to-b from-blue-500 to-purple-500 h-full transform scale-y-0 origin-top animate-timeline"></div>
+      <div className="absolute w-1 bg-gradient-to-b from-blue-500 to-red-500 h-full transform scale-y-0 origin-top animate-timeline"></div>
       <motion.div
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
-        className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 relative z-10 ring-2 ring-white/20 ring-offset-2 ring-offset-black"
+        className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-500 to-red-500 relative z-10 ring-2 ring-white/20 ring-offset-2 ring-offset-black"
       />
     </div>
     
@@ -61,7 +61,7 @@ export default function Timeline() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
+          className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-red-500 text-transparent bg-clip-text"
         >
           Timeline
         </motion.h2>
