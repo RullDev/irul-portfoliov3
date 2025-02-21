@@ -1,6 +1,5 @@
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 
 const CircleBackground = () => (
   <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
@@ -25,88 +24,44 @@ const CircleBackground = () => (
   </div>
 );
 
-const Cloud = ({ className, imagePath, initialX, initialY, duration }) => (
-  <motion.img
-    src={imagePath}
-    alt="cloud"
-    className={`absolute w-32 h-auto opacity-20 ${className}`}
-    initial={{ x: initialX, y: initialY }}
+const FloatingCloud = ({ delay = 0, scale = 1, imagePath }) => (
+  <motion.div
+    className="absolute"
+    initial={{ 
+      x: -100, 
+      y: Math.random() * 200 - 100,
+      opacity: 0 
+    }}
     animate={{
-      x: initialX < 0 ? '120%' : '-120%',
-      y: [initialY - 20, initialY + 20, initialY - 20],
+      x: ['-100%', '200%'],
+      opacity: [0, 0.15, 0],
     }}
     transition={{
-      x: {
-        duration,
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-      y: {
-        duration: 4,
-        repeat: Infinity,
-        repeatType: "reverse",
-      }
+      duration: 20,
+      repeat: Infinity,
+      delay,
+      ease: "linear",
     }}
-  />
+  >
+    <img 
+      src={imagePath} 
+      alt="cloud"
+      className="w-32 h-auto"
+      style={{ transform: `scale(${scale})` }}
+    />
+  </motion.div>
 );
-
-const TypeWriter = ({ text, speed = 100 }) => {
-  const [displayText, setDisplayText] = useState('');
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (index < text.length) {
-      const timer = setTimeout(() => {
-        setDisplayText(prev => prev + text[index]);
-        setIndex(index + 1);
-      }, speed);
-      return () => clearTimeout(timer);
-    }
-  }, [index, text, speed]);
-
-  return <span>{displayText}</span>;
-};
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-black">
       <CircleBackground />
       
-      <Cloud 
-        imagePath="/cloud/cloud1.png"
-        className="top-1/4"
-        initialX={-100}
-        initialY={50}
-        duration={15}
-      />
-      <Cloud 
-        imagePath="/cloud/cloud2.png"
-        className="bottom-1/4"
-        initialX={window.innerWidth}
-        initialY={-80}
-        duration={18}
-      />
-      <Cloud 
-        imagePath="/cloud/cloud3.png"
-        className="top-1/3"
-        initialX={-150}
-        initialY={150}
-        duration={20}
-      />
-      <Cloud 
-        imagePath="/cloud/cloud4.png"
-        className="bottom-1/3"
-        initialX={window.innerWidth}
-        initialY={100}
-        duration={17}
-      />
-      <Cloud 
-        imagePath="/cloud/cloud5.png"
-        className="top-2/3"
-        initialX={-200}
-        initialY={-100}
-        duration={22}
-      />
+      <FloatingCloud imagePath="cloud/cloud1.png" delay={0} scale={1.2} />
+      <FloatingCloud imagePath="cloud/cloud2.png" delay={4} scale={1.5} />
+      <FloatingCloud imagePath="cloud/cloud3.png" delay={8} scale={1.3} />
+      <FloatingCloud imagePath="cloud/cloud4.png" delay={12} scale={1.4} />
+      <FloatingCloud imagePath="cloud/cloud5.png" delay={16} scale={1.6} />
 
       <div className="container mx-auto px-6 relative z-10 text-center">
         <motion.div
@@ -133,11 +88,14 @@ export default function Hero() {
             />
           </motion.div>
 
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-blue-500 text-transparent bg-clip-text">
-            <TypeWriter text="Let's create" speed={150} />
-            <br/>
-            <TypeWriter text="something amazing" speed={150} />
-          </h1>
+          <motion.h1 
+            className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-blue-500 text-transparent bg-clip-text"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Let's create<br/>something amazing
+          </motion.h1>
           
           <motion.p 
             className="text-xl text-gray-300 mb-8"
