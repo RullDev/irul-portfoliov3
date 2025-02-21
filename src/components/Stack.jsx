@@ -35,25 +35,20 @@ const technologies = [
   },
 ];
 
-function SpotifyCard() {
+function Spotify() {
   return (
-    <div className="bg-white/5 backdrop-blur-lg p-2 rounded-lg shadow-md my-4">
-      <div className="flex items-center">
-        <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center mr-4">
-          {/* Spotify Icon here */}
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-7.88-3.801a1.2 1.2 0 00-1.278 1.74L6.336 12.5c.272 1.227 1.27 2.26 2.62 2.543l7.88 3.801a1.2 1.2 0 001.278-1.74l-1.36-6.311a1.2 1.2 0 00-1.278-1.74z" />
-          </svg>
-        </div>
-        <div>
-          <h3 className="text-lg font-medium text-white">Song Name</h3>
-          <p className="text-sm text-gray-400">Artist Name</p>
-        </div>
+    <section className="py-8">
+      <h2 className="text-2xl font-bold mb-4 text-center">My Favorite Songs</h2>
+      {/* Add Spotify playlist/songs here */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {/*Example Song Card*/}
+          <div className="bg-white/5 backdrop-blur-lg p-2 rounded-lg shadow-md">
+              <p>Song 1</p>
+          </div>
       </div>
-    </div>
+    </section>
   );
 }
-
 
 export default function Stack() {
   return (
@@ -84,7 +79,7 @@ export default function Stack() {
             </motion.div>
           ))}
         </div>
-        <SpotifyCard />
+        <Spotify />
       </div>
     </section>
   );

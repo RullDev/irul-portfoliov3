@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Portfolio from './components/Portfolio';
 import Stack from './components/Stack';
+import Spotify from './components/Spotify'; // Added import for Spotify component
 import Footer from './components/Footer';
 import './App.css';
 
@@ -55,6 +55,7 @@ export default function App() {
       <Hero />
       <Portfolio />
       <Stack />
+      <Spotify /> {/* Added Spotify component */}
       <Footer />
     </div>
   );
