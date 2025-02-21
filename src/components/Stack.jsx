@@ -2,38 +2,45 @@
 import { motion } from 'framer-motion';
 
 const technologies = [
-  { name: "React", icon: "⚛️" },
-  { name: "JavaScript", icon: "🟨" },
-  { name: "TypeScript", icon: "🔷" },
-  { name: "Node.js", icon: "🟢" },
-  { name: "TailwindCSS", icon: "🎨" },
-  { name: "MongoDB", icon: "🍃" },
-  { name: "GraphQL", icon: "⬡" },
-  { name: "Docker", icon: "🐳" },
+  {
+    name: "React",
+    svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 9.861A2.139 2.139 0 1 0 12 14.139 2.139 2.139 0 1 0 12 9.861zM6.008 16.255l-.472-.12C2.018 15.246 0 13.737 0 11.996s2.018-3.25 5.536-4.139l.472-.119.133.468a23.53 23.53 0 0 0 1.363 3.578l.101.213-.101.213a23.307 23.307 0 0 0-1.363 3.578l-.133.467zM5.317 8.95c-2.674.751-4.315 1.9-4.315 3.046 0 1.145 1.641 2.294 4.315 3.046a24.95 24.95 0 0 1 1.182-3.046A24.752 24.752 0 0 1 5.317 8.95zM17.992 16.255l-.133-.469a23.357 23.357 0 0 0-1.364-3.577l-.101-.213.101-.213a23.42 23.42 0 0 0 1.364-3.578l.133-.468.473.119c3.517.889 5.535 2.398 5.535 4.14s-2.018 3.25-5.535 4.139l-.473.12zm-.491-4.259c.48 1.039.877 2.06 1.182 3.046 2.675-.752 4.315-1.901 4.315-3.046 0-1.146-1.641-2.294-4.315-3.046a24.788 24.788 0 0 1-1.182 3.046z"/></svg>`
+  },
+  {
+    name: "Node.js",
+    svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z"/></svg>`
+  },
+  {
+    name: "TypeScript",
+    svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,3v18h18V3H3z M13.666,12.451h-2.118V19H9.841v-6.549H7.767V11h5.899V12.451z M13.998,18.626v-1.751 c0,0,0.956,0.721,2.104,0.721c1.148,0,1.103-0.75,1.103-0.853c0-1.089-3.251-1.089-3.251-3.501c0-3.281,4.737-1.986,4.737-1.986 l-0.059,1.559c0,0-0.794-0.53-1.692-0.53c-0.897,0-1.221,0.427-1.221,0.883c0,1.177,3.281,1.059,3.281,3.428 C19,20.244,13.998,18.626,13.998,18.626z"/></svg>`
+  }
 ];
 
 export default function Stack() {
   return (
-    <section id="stack" className="py-20 bg-white dark:bg-gray-900">
+    <section id="stack" className="py-20 bg-black text-white">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
+          className="text-4xl font-bold text-center mb-12"
         >
           My Tech Stack
         </motion.h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {technologies.map((tech, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ delay: index * 0.1 }}
-              className="flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow"
+              className="flex flex-col items-center p-6 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-lg backdrop-blur-sm"
             >
-              <span className="text-4xl mb-4">{tech.icon}</span>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{tech.name}</h3>
+              <div className="w-16 h-16 mb-4 text-purple-500">
+                <div dangerouslySetInnerHTML={{ __html: tech.svg }} />
+              </div>
+              <h3 className="text-lg font-semibold">{tech.name}</h3>
             </motion.div>
           ))}
         </div>
