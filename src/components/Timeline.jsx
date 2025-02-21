@@ -60,9 +60,9 @@ export default function Timeline() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
+          className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-red-500 text-transparent bg-clip-text"
         >
-          My Journey
+          Timeline
         </motion.h2>
 
         <div className="flex flex-col space-y-24 max-w-4xl mx-auto">
