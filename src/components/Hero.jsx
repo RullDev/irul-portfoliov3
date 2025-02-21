@@ -2,36 +2,44 @@
 import { motion } from 'framer-motion';
 
 const CircleBackground = () => (
-  <div className="absolute inset-0 overflow-hidden">
+  <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
     <motion.div 
-      className="absolute w-[800px] h-[800px] border-2 border-white/20 rounded-full left-1/2 top-1/2"
+      className="absolute w-[600px] h-[600px] border border-white/10 rounded-full"
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ 
-        scale: [0.8, 1.2, 0.8],
-        opacity: [0.3, 0.5, 0.3],
+        scale: [0.8, 1.1, 0.8],
+        opacity: [0.2, 0.4, 0.2],
       }}
       transition={{ duration: 8, repeat: Infinity }}
-      style={{ transform: 'translate(-50%, -50%)' }}
+    />
+    <motion.div 
+      className="absolute w-[800px] h-[800px] border border-white/5 rounded-full"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ 
+        scale: [1, 1.2, 1],
+        opacity: [0.1, 0.3, 0.1],
+      }}
+      transition={{ duration: 10, repeat: Infinity }}
     />
   </div>
 );
 
-const FloatingCloud = ({ delay = 0, duration = 20 }) => (
+const FloatingCloud = ({ delay = 0, scale = 1 }) => (
   <motion.div
-    className="absolute"
-    initial={{ x: -100, opacity: 0 }}
+    className="absolute left-1/2 top-1/2"
+    initial={{ x: "-50%", y: "-50%", opacity: 0 }}
     animate={{
-      x: ['0vw', '100vw'],
-      opacity: [0, 1, 0],
+      opacity: [0, 0.05, 0],
+      scale: [0.8, 1.2, 0.8],
     }}
     transition={{
-      duration: duration,
+      duration: 8,
       repeat: Infinity,
       delay,
-      ease: "linear",
+      ease: "easeInOut",
     }}
   >
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="white" opacity="0.1">
+    <svg width="128" height="128" viewBox="0 0 64 64" fill="white" style={{ transform: `scale(${scale})` }}>
       <path d="M55.5,25.5A13,13,0,0,0,42.8,15.5a16.5,16.5,0,0,0-31,4.2A11,11,0,0,0,13.5,41h42a11,11,0,0,0,0-22Z"/>
     </svg>
   </motion.div>
@@ -39,14 +47,14 @@ const FloatingCloud = ({ delay = 0, duration = 20 }) => (
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#0f3460]">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
       <CircleBackground />
       
-      {[...Array(6)].map((_, i) => (
+      {[...Array(4)].map((_, i) => (
         <FloatingCloud 
           key={i} 
-          delay={i * 4} 
-          duration={25 + i * 5}
+          delay={i * 2} 
+          scale={1 + (i * 0.2)}
         />
       ))}
 
