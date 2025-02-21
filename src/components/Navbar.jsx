@@ -36,8 +36,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             <NavLink href="#home" onClick={handleLinkClick}>Home</NavLink>
             <NavLink href="#about" onClick={handleLinkClick}>About</NavLink>
-            <NavLink href="#timeline" onClick={handleLinkClick}>Timeline</NavLink>
-            <NavLink href="#stack" onClick={handleLinkClick}>Stack</NavLink>
+            <NavLink href="#stack" onClick={handleLinkClick}>Skills</NavLink>
           </div>
 
           <div className="md:hidden">
@@ -83,8 +82,7 @@ export default function Navbar() {
           <div className="px-2 pt-2 pb-3 space-y-1">
             <NavLink href="#home" onClick={handleLinkClick}>Home</NavLink>
             <NavLink href="#about" onClick={handleLinkClick}>About</NavLink>
-            <NavLink href="#timeline" onClick={handleLinkClick}>Timeline</NavLink>
-            <NavLink href="#stack" onClick={handleLinkClick}>Stack</NavLink>
+            <NavLink href="#stack" onClick={handleLinkClick}>Skills</NavLink>
           </div>
         </motion.div>
       </div>

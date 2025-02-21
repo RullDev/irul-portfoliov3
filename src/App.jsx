@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Portfolio from './components/Portfolio';
-import Timeline from './components/Timeline';
 import Stack from './components/Stack';
 import Footer from './components/Footer';
 import './App.css';
@@ -55,7 +54,6 @@ export default function App() {
       <Navbar />
       <Hero />
       <Portfolio />
-      <Timeline />
       <Stack />
       <Footer />
     </div>
