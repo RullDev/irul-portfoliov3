@@ -24,39 +24,44 @@ const CircleBackground = () => (
   </div>
 );
 
-const FloatingCloud = ({ delay = 0, scale = 1 }) => (
+const FloatingCloud = ({ delay = 0, scale = 1, imagePath }) => (
   <motion.div
-    className="absolute left-1/2 top-1/2"
-    initial={{ x: "-50%", y: "-50%", opacity: 0 }}
+    className="absolute"
+    initial={{ 
+      x: -100, 
+      y: Math.random() * 200 - 100,
+      opacity: 0 
+    }}
     animate={{
-      opacity: [0, 0.05, 0],
-      scale: [0.8, 1.2, 0.8],
+      x: ['-100%', '200%'],
+      opacity: [0, 0.15, 0],
     }}
     transition={{
-      duration: 8,
+      duration: 20,
       repeat: Infinity,
       delay,
-      ease: "easeInOut",
+      ease: "linear",
     }}
   >
-    <svg width="128" height="128" viewBox="0 0 64 64" fill="white" style={{ transform: `scale(${scale})` }}>
-      <path d="M55.5,25.5A13,13,0,0,0,42.8,15.5a16.5,16.5,0,0,0-31,4.2A11,11,0,0,0,13.5,41h42a11,11,0,0,0,0-22Z"/>
-    </svg>
+    <img 
+      src={imagePath} 
+      alt="cloud"
+      className="w-32 h-auto"
+      style={{ transform: `scale(${scale})` }}
+    />
   </motion.div>
 );
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-black">
       <CircleBackground />
       
-      {[...Array(4)].map((_, i) => (
-        <FloatingCloud 
-          key={i} 
-          delay={i * 2} 
-          scale={1 + (i * 0.2)}
-        />
-      ))}
+      <FloatingCloud imagePath="/cloud1.png" delay={0} scale={1.2} />
+      <FloatingCloud imagePath="/cloud2.png" delay={4} scale={1.5} />
+      <FloatingCloud imagePath="/cloud3.png" delay={8} scale={1.3} />
+      <FloatingCloud imagePath="/cloud4.png" delay={12} scale={1.4} />
+      <FloatingCloud imagePath="/cloud5.png" delay={16} scale={1.6} />
 
       <div className="container mx-auto px-6 relative z-10 text-center">
         <motion.div
