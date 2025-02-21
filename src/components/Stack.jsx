@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 
 const technologies = [
@@ -35,21 +36,6 @@ const technologies = [
   },
 ];
 
-function Spotify() {
-  return (
-    <section className="py-8">
-      <h2 className="text-2xl font-bold mb-4 text-center">My Favorite Songs</h2>
-      {/* Add Spotify playlist/songs here */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {/*Example Song Card*/}
-          <div className="bg-white/5 backdrop-blur-lg p-2 rounded-lg shadow-md">
-              <p>Song 1</p>
-          </div>
-      </div>
-    </section>
-  );
-}
-
 export default function Stack() {
   return (
     <section id="stack" className="py-32 bg-black text-white">
@@ -61,7 +47,7 @@ export default function Stack() {
         >
           Tech Stack
         </motion.h2>
-
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {technologies.map((tech, index) => (
             <motion.div
@@ -79,7 +65,6 @@ export default function Stack() {
             </motion.div>
           ))}
         </div>
-        <Spotify />
       </div>
     </section>
   );

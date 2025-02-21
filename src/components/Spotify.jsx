@@ -6,7 +6,7 @@ const MelodyBar = ({ delay }) => (
     className="w-1 mx-[2px] bg-green-500"
     initial={{ height: 10 }}
     animate={{ 
-      height: [10, 40, 10],
+      height: [5, 25, 5],
     }}
     transition={{
       duration: 1,
@@ -18,12 +18,12 @@ const MelodyBar = ({ delay }) => (
 
 export default function Spotify() {
   return (
-    <div className="py-16 bg-black">
+    <div className="py-1 bg-black">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-green-400 to-green-600 text-transparent bg-clip-text"
+          className="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-green-400 to-green-600 text-transparent bg-clip-text"
         >
           My Favorite Songs
         </motion.h2>
@@ -32,18 +32,16 @@ export default function Spotify() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           whileHover={{ scale: 1.02 }}
-          className="max-w-md mx-auto bg-white/5 backdrop-blur-lg p-6 rounded-xl border border-white/10 hover:border-green-500/50 transition-all"
+          className="max-w-sm mx-auto bg-white/5 backdrop-blur-lg p-2 rounded-xl border border-white/10 hover:border-green-500/50 transition-all"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                </svg>
-              </div>
+               <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+  <img src="https://i.scdn.co/image/ab67616d0000b27316f48ac1e989d7acc028e9cf" alt="Songs" className="h-10 w-10 rounded-full flex" />
+</div>
               <div>
-                <h3 className="text-xl font-bold text-white">Glimpse of Us</h3>
-                <p className="text-gray-400">Joji</p>
+                <h3 className="text-base font-bold text-white">Something About You</h3>
+                <p className="text-gray-400">Eyedress, Dent May</p>
               </div>
             </div>
             <div className="flex items-end h-12 space-x-[2px]">
