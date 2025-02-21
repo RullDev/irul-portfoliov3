@@ -25,28 +25,37 @@ const CircleBackground = () => (
   </div>
 );
 
-const TypeWriter = ({ text, delay = 0 }) => {
+const TypeWriter = ({ text }) => {
   const [displayText, setDisplayText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
   
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      let currentIndex = 0;
-      const intervalId = setInterval(() => {
-        if (currentIndex <= text.length) {
-          setDisplayText(text.slice(0, currentIndex));
-          currentIndex++;
-        } else {
-          clearInterval(intervalId);
-        }
-      }, 100);
-      
-      return () => clearInterval(intervalId);
-    }, delay);
-    
-    return () => clearTimeout(timeout);
-  }, [text, delay]);
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= text.length) {
+        setDisplayText(text.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 100);
 
-  return <span>{displayText}</span>;
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 530);
+    
+    return () => {
+      clearInterval(typingInterval);
+      clearInterval(cursorInterval);
+    };
+  }, [text]);
+
+  return (
+    <span className="relative">
+      {displayText}
+      <span className={`absolute ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}>|</span>
+    </span>
+  );
 };
 
 const Cloud = ({ src, className = "", initialX, initialY }) => (
@@ -56,13 +65,14 @@ const Cloud = ({ src, className = "", initialX, initialY }) => (
     className={`absolute w-32 h-auto opacity-20 ${className}`}
     initial={{ x: initialX, y: initialY }}
     animate={{
-      x: initialX < 0 ? [initialX, 100, initialX] : [initialX, -100, initialX],
-      y: [initialY, initialY + 30, initialY],
+      x: [initialX, initialX + (initialX < 0 ? 200 : -200), initialX],
+      y: [initialY, initialY + 50, initialY],
     }}
     transition={{
-      duration: 20,
+      duration: 25,
       repeat: Infinity,
-      ease: "linear"
+      ease: "linear",
+      times: [0, 0.5, 1]
     }}
   />
 );
@@ -72,11 +82,11 @@ export default function Hero() {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-black">
       <CircleBackground />
       
-      <Cloud src="cloud/cloud1.png" initialX={-200} initialY={100} />
-      <Cloud src="cloud/cloud2.png" initialX={200} initialY={-150} />
-      <Cloud src="cloud/cloud3.png" initialX={-150} initialY={-100} />
-      <Cloud src="cloud/cloud4.png" initialX={300} initialY={200} />
-      <Cloud src="cloud/cloud5.png" initialX={-300} initialY={0} />
+      <Cloud src="cloud/cloud1.png" initialX={-250} initialY={-150} />
+      <Cloud src="cloud/cloud2.png" initialX={300} initialY={100} />
+      <Cloud src="cloud/cloud3.png" initialX={-180} initialY={180} />
+      <Cloud src="cloud/cloud4.png" initialX={200} initialY={-80} />
+      <Cloud src="cloud/cloud5.png" initialX={-350} initialY={50} />
 
       <div className="container mx-auto px-6 relative z-10 text-center">
         <motion.div
