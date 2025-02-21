@@ -1,11 +1,12 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const NavLink = ({ href, children }) => (
+const NavLink = ({ href, children, onClick }) => (
   <a
     href={href}
-    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+    onClick={onClick}
+    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors block md:inline-block"
   >
     {children}
   </a>
@@ -13,6 +14,10 @@ const NavLink = ({ href, children }) => (
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
 
   return (
     <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
@@ -29,10 +34,10 @@ export default function Navbar() {
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <NavLink href="#home">Home</NavLink>
-            <NavLink href="#about">About</NavLink>
-            <NavLink href="#timeline">Timeline</NavLink>
-            <NavLink href="#stack">Stack</NavLink>
+            <NavLink href="#home" onClick={handleLinkClick}>Home</NavLink>
+            <NavLink href="#about" onClick={handleLinkClick}>About</NavLink>
+            <NavLink href="#timeline" onClick={handleLinkClick}>Timeline</NavLink>
+            <NavLink href="#stack" onClick={handleLinkClick}>Stack</NavLink>
           </div>
 
           <div className="md:hidden">
@@ -76,10 +81,10 @@ export default function Navbar() {
           className="md:hidden overflow-hidden"
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <NavLink href="#home">Home</NavLink>
-            <NavLink href="#about">About</NavLink>
-            <NavLink href="#timeline">Timeline</NavLink>
-            <NavLink href="#stack">Stack</NavLink>
+            <NavLink href="#home" onClick={handleLinkClick}>Home</NavLink>
+            <NavLink href="#about" onClick={handleLinkClick}>About</NavLink>
+            <NavLink href="#timeline" onClick={handleLinkClick}>Timeline</NavLink>
+            <NavLink href="#stack" onClick={handleLinkClick}>Stack</NavLink>
           </div>
         </motion.div>
       </div>
