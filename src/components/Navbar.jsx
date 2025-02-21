@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -16,7 +15,7 @@ export default function Navbar() {
           >
             Portfolio
           </motion.div>
-          
+
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               <NavLink href="#home">Home</NavLink>
@@ -24,7 +23,7 @@ export default function Navbar() {
               <NavLink href="#stack">Stack</NavLink>
             </div>
           </div>
-          
+
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}

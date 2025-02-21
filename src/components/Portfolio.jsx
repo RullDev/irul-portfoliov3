@@ -74,6 +74,7 @@ export default function Portfolio() {
 }
 
 
+
 import { motion } from 'framer-motion';
 
 export default function About() {
@@ -83,34 +84,52 @@ export default function About() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-center mb-12"
+          className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-500 to-blue-500 text-transparent bg-clip-text"
         >
           About Me
         </motion.h2>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="max-w-3xl mx-auto text-center"
+          className="max-w-4xl mx-auto"
         >
-          <p className="text-xl text-gray-300 leading-relaxed mb-8">
-            I'm a passionate developer who loves creating beautiful and functional web experiences. With a strong foundation in modern web technologies, I strive to build applications that make a difference.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="grid md:grid-cols-2 gap-8">
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 p-6 rounded-lg backdrop-blur-sm"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 p-8 rounded-2xl backdrop-blur-sm"
             >
-              <h3 className="text-xl font-bold mb-2">Web Development</h3>
-              <p className="text-gray-400">Creating responsive and dynamic web applications</p>
+              <h3 className="text-2xl font-bold mb-4 text-purple-400">Passion & Skills</h3>
+              <p className="text-gray-300 leading-relaxed">
+                I'm a creative developer who thrives on turning complex problems into elegant solutions. 
+                With expertise in modern web technologies, I craft digital experiences that leave lasting impressions.
+              </p>
             </motion.div>
+
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 p-6 rounded-lg backdrop-blur-sm"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-8 rounded-2xl backdrop-blur-sm"
             >
-              <h3 className="text-xl font-bold mb-2">UI/UX Design</h3>
-              <p className="text-gray-400">Crafting beautiful and intuitive user interfaces</p>
+              <h3 className="text-2xl font-bold mb-4 text-blue-400">Journey</h3>
+              <p className="text-gray-300 leading-relaxed">
+                From coding enthusiast to professional developer, my journey has been driven by continuous learning 
+                and a dedication to mastering the latest technologies in the ever-evolving digital landscape.
+              </p>
             </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mt-12 text-center"
+          >
+            <a
+              href="#contact"
+              className="inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity"
+            >
+              Let's Connect
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>
