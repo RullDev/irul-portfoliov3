@@ -57,11 +57,11 @@ export default function Hero() {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-black">
       <CircleBackground />
       
-      <FloatingCloud imagePath="/cloud1.png" delay={0} scale={1.2} />
-      <FloatingCloud imagePath="/cloud2.png" delay={4} scale={1.5} />
-      <FloatingCloud imagePath="/cloud3.png" delay={8} scale={1.3} />
-      <FloatingCloud imagePath="/cloud4.png" delay={12} scale={1.4} />
-      <FloatingCloud imagePath="/cloud5.png" delay={16} scale={1.6} />
+      <FloatingCloud imagePath="cloud/cloud1.png" delay={0} scale={1.2} />
+      <FloatingCloud imagePath="cloud/cloud2.png" delay={4} scale={1.5} />
+      <FloatingCloud imagePath="cloud/cloud3.png" delay={8} scale={1.3} />
+      <FloatingCloud imagePath="cloud/cloud4.png" delay={12} scale={1.4} />
+      <FloatingCloud imagePath="cloud/cloud5.png" delay={16} scale={1.6} />
 
       <div className="container mx-auto px-6 relative z-10 text-center">
         <motion.div
@@ -82,14 +82,14 @@ export default function Hero() {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-30 blur-xl" />
             <img
-              src="https://avatars.githubusercontent.com/u/1234567?v=4"
+              src="profilepic.png"
               alt="Profile"
-              className="w-full h-full object-cover rounded-full relative z-10 border-4 border-white/10"
+              className="w-full h-full object-cover rounded-full relative z-10"
             />
           </motion.div>
 
           <motion.h1 
-            className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
+            className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-blue-500 text-transparent bg-clip-text"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -103,7 +103,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            Hi, I'm John Doe. A passionate Fullstack Developer<br/>
+            Hi, I'm Irul. A passionate Fullstack Developer<br/>
             crafting digital experiences that matter.
           </motion.p>
         </motion.div>

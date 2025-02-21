@@ -10,7 +10,7 @@ const fadeInUp = {
 
 export default function About() {
   return (
-    <section id="about" className="py-32 bg-[#0f3460] text-white relative overflow-hidden">
+    <section id="about" className="py-32 bg-black text-white relative overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.h2
           {...fadeInUp}
@@ -55,7 +55,7 @@ export default function About() {
         >
           <a
             href="#contact"
-            className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity"
+            className="inline-block bg-gradient-to-r from-blue-500 to-white-500 text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity outline outline-1 outline-white/60"
           >
             Let's Work Together
           </a>

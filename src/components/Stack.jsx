@@ -38,12 +38,12 @@ const technologies = [
 
 export default function Stack() {
   return (
-    <section id="stack" className="py-32 bg-[#16213e] text-white">
+    <section id="stack" className="py-32 bg-black text-white">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
+          className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-red-500 text-transparent bg-clip-text"
         >
           Tech Stack
         </motion.h2>
