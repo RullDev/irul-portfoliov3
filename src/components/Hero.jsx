@@ -1,12 +1,12 @@
-
 import { motion } from 'framer-motion';
 
-const Cloud = ({ delay = 0, duration = 20 }) => (
+const Cloud = ({ delay = 0, duration = 20, scale = 1 }) => (
   <motion.div
-    className="absolute w-32 h-32 bg-gradient-to-r from-purple-500/30 to-blue-500/30 rounded-full filter blur-xl"
+    className="absolute w-16 h-8 bg-white/20 rounded-full filter blur-sm"
     animate={{
       x: ["0%", "100%", "0%"],
-      y: [0, 50, 0],
+      y: [0, 20, 0],
+      scale: [scale, scale * 1.2, scale],
     }}
     transition={{
       duration,
@@ -19,55 +19,41 @@ const Cloud = ({ delay = 0, duration = 20 }) => (
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-blue-400 to-blue-600">
       <div className="absolute inset-0 overflow-hidden">
-        <Cloud delay={0} duration={15} />
-        <Cloud delay={5} duration={20} />
-        <Cloud delay={10} duration={18} />
+        {[...Array(6)].map((_, i) => (
+          <Cloud key={i} delay={i * 2} duration={15 + i * 2} scale={0.5 + i * 0.2} />
+        ))}
       </div>
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between">
+
+      <div className="container mx-auto px-6 relative z-10 text-center text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mx-auto"
+        >
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="md:w-1/2 text-center md:text-left"
+            className="w-32 h-32 mx-auto mb-8 relative"
+            initial={{ y: 20 }}
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 3 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-              Hello, I'm<br/>
-              <span className="bg-gradient-to-r from-purple-500 to-blue-500 text-transparent bg-clip-text">Your Name</span>
-            </h1>
-            <p className="text-xl text-gray-300 mb-8">
-              Full Stack Developer
-            </p>
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-3 rounded-full"
-            >
-              Contact Me
-            </motion.button>
+            <img
+              src="https://avatars.githubusercontent.com/u/1234567?v=4"
+              alt="Profile"
+              className="rounded-2xl shadow-xl"
+            />
           </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="md:w-1/2 mt-10 md:mt-0"
-          >
-            <div className="w-64 h-64 mx-auto relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur-lg opacity-50" />
-              <div className="relative w-full h-full rounded-full overflow-hidden">
-                <img
-                  src="https://placekitten.com/400/400"
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </motion.div>
-        </div>
+
+          <h1 className="text-5xl font-bold mb-4">
+            Lets create<br/>websites
+          </h1>
+          <p className="text-xl opacity-90 mb-8">
+            My name is John Doe. I am a Fullstack<br/>
+            Developer with 5+ years experience.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
