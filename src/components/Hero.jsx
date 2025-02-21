@@ -1,5 +1,6 @@
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const CircleBackground = () => (
   <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
@@ -24,32 +25,46 @@ const CircleBackground = () => (
   </div>
 );
 
-const FloatingCloud = ({ delay = 0, scale = 1, imagePath }) => (
-  <motion.div
-    className="absolute"
-    initial={{ 
-      x: -100, 
-      y: Math.random() * 200 - 100,
-      opacity: 0 
-    }}
+const TypeWriter = ({ text, delay = 0 }) => {
+  const [displayText, setDisplayText] = useState('');
+  
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      let currentIndex = 0;
+      const intervalId = setInterval(() => {
+        if (currentIndex <= text.length) {
+          setDisplayText(text.slice(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(intervalId);
+        }
+      }, 100);
+      
+      return () => clearInterval(intervalId);
+    }, delay);
+    
+    return () => clearTimeout(timeout);
+  }, [text, delay]);
+
+  return <span>{displayText}</span>;
+};
+
+const Cloud = ({ src, className = "", initialX, initialY }) => (
+  <motion.img
+    src={src}
+    alt="cloud"
+    className={`absolute w-32 h-auto opacity-20 ${className}`}
+    initial={{ x: initialX, y: initialY }}
     animate={{
-      x: ['-100%', '200%'],
-      opacity: [0, 0.15, 0],
+      x: initialX < 0 ? [initialX, 100, initialX] : [initialX, -100, initialX],
+      y: [initialY, initialY + 30, initialY],
     }}
     transition={{
       duration: 20,
       repeat: Infinity,
-      delay,
-      ease: "linear",
+      ease: "linear"
     }}
-  >
-    <img 
-      src={imagePath} 
-      alt="cloud"
-      className="w-32 h-auto"
-      style={{ transform: `scale(${scale})` }}
-    />
-  </motion.div>
+  />
 );
 
 export default function Hero() {
@@ -57,11 +72,11 @@ export default function Hero() {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-black">
       <CircleBackground />
       
-      <FloatingCloud imagePath="cloud/cloud1.png" delay={0} scale={1.2} />
-      <FloatingCloud imagePath="cloud/cloud2.png" delay={4} scale={1.5} />
-      <FloatingCloud imagePath="cloud/cloud3.png" delay={8} scale={1.3} />
-      <FloatingCloud imagePath="cloud/cloud4.png" delay={12} scale={1.4} />
-      <FloatingCloud imagePath="cloud/cloud5.png" delay={16} scale={1.6} />
+      <Cloud src="cloud/cloud1.png" initialX={-200} initialY={100} />
+      <Cloud src="cloud/cloud2.png" initialX={200} initialY={-150} />
+      <Cloud src="cloud/cloud3.png" initialX={-150} initialY={-100} />
+      <Cloud src="cloud/cloud4.png" initialX={300} initialY={200} />
+      <Cloud src="cloud/cloud5.png" initialX={-300} initialY={0} />
 
       <div className="container mx-auto px-6 relative z-10 text-center">
         <motion.div
@@ -94,7 +109,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Let's create<br/>something amazing
+            <TypeWriter text="Let's create" delay={0} /><br/>
+            <TypeWriter text="websites & design" delay={1500} />
           </motion.h1>
           
           <motion.p 
