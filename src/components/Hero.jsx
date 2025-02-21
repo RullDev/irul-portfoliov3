@@ -51,7 +51,7 @@ const TypeWriter = ({ text }) => {
   }, [text]);
 
   return (
-    <span className="relative">
+    <span className="relative text-white">
       {displayText}
       <span className={`absolute ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}>|</span>
     </span>
@@ -118,9 +118,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-          >
-            <TypeWriter text="Let's create" delay={0} /><br/>
-            <TypeWriter text="websites & design" delay={1500} />
+          >Let's create<br/>
+            <TypeWriter text="websites" delay={1500} />
+            <TypeWriter text="experiences" delay={1500} />
           </motion.h1>
           
           <motion.p 
