@@ -2,12 +2,16 @@
 import { motion } from 'framer-motion';
 
 const TimelineItem = ({ year, title, description, isLeft }) => (
-  <div className={`flex ${isLeft ? 'flex-row' : 'flex-row-reverse'} items-center w-full`}>
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className={`flex ${isLeft ? 'flex-row' : 'flex-row-reverse'} items-center w-full relative`}
+  >
     <div className="w-5/12">
       <motion.div
-        initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        className={`p-6 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 
+        whileHover={{ scale: 1.02 }}
+        className={`p-6 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 hover:border-blue-500/50 transition-all
           ${isLeft ? 'text-right' : 'text-left'}`}
       >
         <span className="text-blue-400 font-bold">{year}</span>
@@ -15,11 +19,19 @@ const TimelineItem = ({ year, title, description, isLeft }) => (
         <p className="text-gray-400 mt-2">{description}</p>
       </motion.div>
     </div>
-    <div className="w-2/12 flex justify-center">
-      <div className="w-1 bg-gradient-to-b from-blue-500 to-purple-500 h-full"></div>
+    
+    <div className="w-2/12 flex justify-center relative">
+      <div className="absolute w-1 bg-gradient-to-b from-blue-500 to-purple-500 h-full top-0"></div>
+      <motion.div
+        initial={{ scale: 0 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        className="w-4 h-4 rounded-full bg-blue-500 relative z-10"
+      />
     </div>
+    
     <div className="w-5/12"></div>
-  </div>
+  </motion.div>
 );
 
 export default function Timeline() {
@@ -47,12 +59,13 @@ export default function Timeline() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
         >
           My Journey
         </motion.h2>
 
-        <div className="flex flex-col space-y-12 max-w-4xl mx-auto">
+        <div className="flex flex-col space-y-24 max-w-4xl mx-auto">
           {events.map((event, index) => (
             <TimelineItem
               key={index}

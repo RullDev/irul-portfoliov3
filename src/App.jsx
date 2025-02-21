@@ -14,11 +14,8 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      const scrolled = document.documentElement.scrollTop;
+      setIsVisible(scrolled > 300);
     };
 
     window.addEventListener('scroll', toggleVisibility);
@@ -34,10 +31,15 @@ const ScrollToTop = () => {
 
   return (
     <motion.button
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isVisible ? 1 : 0 }}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ 
+        opacity: isVisible ? 1 : 0,
+        scale: isVisible ? 1 : 0.5,
+        y: isVisible ? 0 : 20
+      }}
       onClick={scrollToTop}
-      className="fixed bottom-8 right-8 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-colors z-50"
+      className="fixed bottom-4 right-4 md:bottom-8 md:right-8 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-all hover:scale-110 z-50"
+      style={{ display: isVisible ? 'block' : 'none' }}
     >
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />

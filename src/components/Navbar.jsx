@@ -16,56 +16,52 @@ export default function Navbar() {
 
   return (
     <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"
+            className="flex-shrink-0"
           >
-            Portfolio
+            <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+              Portfolio
+            </span>
           </motion.div>
 
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <NavLink href="#home">Home</NavLink>
-              <NavLink href="#about">About</NavLink>
-              <NavLink href="#timeline">Timeline</NavLink>
-              <NavLink href="#stack">Stack</NavLink>
-            </div>
+          <div className="hidden md:flex items-center space-x-4">
+            <NavLink href="#home">Home</NavLink>
+            <NavLink href="#about">About</NavLink>
+            <NavLink href="#timeline">Timeline</NavLink>
+            <NavLink href="#stack">Stack</NavLink>
           </div>
 
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
             >
-              <motion.div
-                animate={isOpen ? "open" : "closed"}
-                className="w-6 h-6 flex flex-col justify-around"
+              <svg
+                className="h-6 w-6"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
               >
-                <motion.span
-                  variants={{
-                    closed: { rotate: 0, y: 0 },
-                    open: { rotate: 45, y: 8 },
-                  }}
-                  className="w-6 h-0.5 bg-current transform origin-center transition-transform"
-                ></motion.span>
-                <motion.span
-                  variants={{
-                    closed: { opacity: 1 },
-                    open: { opacity: 0 },
-                  }}
-                  className="w-6 h-0.5 bg-current"
-                ></motion.span>
-                <motion.span
-                  variants={{
-                    closed: { rotate: 0, y: 0 },
-                    open: { rotate: -45, y: -8 },
-                  }}
-                  className="w-6 h-0.5 bg-current transform origin-center transition-transform"
-                ></motion.span>
-              </motion.div>
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
             </button>
           </div>
         </div>
