@@ -25,34 +25,42 @@ const CircleBackground = () => (
   </div>
 );
 
-const TypeWriter = ({ text }) => {
-  const [displayText, setDisplayText] = useState('');
+const TypeWriter = () => {
+  const words = ["design", "websites"];
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
-  
-  useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= text.length) {
-        setDisplayText(text.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 100);
 
-    const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
+  useEffect(() => {
+    if (subIndex === words[index].length + 1 && !reverse) {
+      setReverse(true);
+      return;
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % words.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, Math.max(reverse ? 75 : 150, parseInt(Math.random() * 350)));
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse]);
+
+  useEffect(() => {
+    const cursor = setInterval(() => {
+      setShowCursor((prev) => !prev);
     }, 530);
-    
-    return () => {
-      clearInterval(typingInterval);
-      clearInterval(cursorInterval);
-    };
-  }, [text]);
+    return () => clearInterval(cursor);
+  }, []);
 
   return (
     <span className="relative text-white">
-      {displayText}
+      {words[index].substring(0, subIndex)}
       <span className={`absolute ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}>|</span>
     </span>
   );
@@ -119,8 +127,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >Let's create<br/>
-            <TypeWriter text="websites" delay={1500} />
-            <TypeWriter text="experiences" delay={1500} />
+            <TypeWriter />
           </motion.h1>
           
           <motion.p 
