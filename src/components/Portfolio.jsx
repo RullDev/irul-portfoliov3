@@ -54,7 +54,7 @@ export default function About() {
           transition={{ delay: 0.6 }}
         >
           <a
-  href="#contact"
+  href="https://wa.me/6283899984688"
   className="inline-flex items-center bg-gradient-to-r from-blue-500 to-white-500 text-white px-8 py-3 rounded-xl hover:outline outline-white opacity-90 transition-opacity"
 >
   <svg
